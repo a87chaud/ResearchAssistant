@@ -6,20 +6,26 @@ query = input('Enter the keywords for the search: ')
 
 # Searches google for the key words entered by the user
 # store the links in an array 
-links = []
+links_arr = []
 for results in search(query):
     # print(results)
-    links.append(results)
+    links_arr.append(results)
 # print(len(links))
 
 # create a class for each link which contains the scraped info etc 
-
+class Links(object):
+    # the link
+    # the scraped text
+    # number keywords
+    def __init__(self, link, scraped_text, num_keywords):
+        self.link = link
+        self.scraped_text = scraped_text
+        self.num_keywords = num_keywords
 # make another array that contains the keyword matches
-
 # scrape the first link and count the number of keyword matches
-for i in range(len(links)):
+for i in range(len(links_arr)):
     # using the request lib get the html from the links gathered above
-    url = links[i]
+    url = links_arr[i]
     r = requests.get(url)
     html_doc = r.text
     # creating the bs4 object
@@ -31,9 +37,11 @@ for i in range(len(links)):
     for i in all_text:
         if query in all_text:
             num_keywords += 1
-    to_str_i = str(i)
-    to_str_key = str(num_keywords)
-    print('link: ' + to_str_i + to_str_key)
+    links_obj = Links(url, soup, num_keywords)
+    print(links_obj)
+    # to_str_i = str(i)
+    # to_str_key = str(num_keywords)
+    # print('link: ' + to_str_i + to_str_key)
 
 # create a class that stores all the relevant information per search
 # this includes: query, links, final result
