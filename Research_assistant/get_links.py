@@ -16,7 +16,7 @@ for results in search(query):
 class Links(object):
     # the link
     # the scraped text
-    # number keywords
+    # number of keyword matches
     def __init__(self, link, scraped_text, num_keywords):
         self.link = link
         self.scraped_text = scraped_text
@@ -24,7 +24,8 @@ class Links(object):
         
 # need to store the objects in an array so they can be accessed later
 links_obj_arr = []
-# make another array that contains the keyword matches
+
+# loop throughs the array of links and extracts the relevant information to get the keyword matches
 # scrape the first link and count the number of keyword matches
 for i in range(len(links_arr)):
     # using the request lib get the html from the links gathered above
@@ -46,7 +47,24 @@ print(links_obj_arr)
     # to_str_i = str(i)
     # to_str_key = str(num_keywords)
     # print('link: ' + to_str_i + to_str_key)
+   
+ 
+'''
+IF SORTING FROM SCRATCH
+# sort the links by greatest number of keyword matches
+# loop through the array of links objects and sort using just the num_keywords attribute
+    #  utilizing merge sort
+# print out the corresponding link
+'''
+
+# sorting the links object array using the sort method 
+# key(any function) will be a lambda function that simply extract the num_keywords 
+links_obj_arr.sort(key = lambda x:x.num_keywords, reverse=True)
 
 # create a class that stores all the relevant information per search
 # this includes: query, links, final result
-# another class per link which stores the scraped info, num of keyword matches etc
+# this class must inherit the Links 
+class Final_Result(Links):
+    def __init__(self, query):
+        self.query = query
+        
