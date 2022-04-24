@@ -21,6 +21,9 @@ class Links(object):
         self.link = link
         self.scraped_text = scraped_text
         self.num_keywords = num_keywords
+        
+# need to store the objects in an array so they can be accessed later
+links_obj_arr = []
 # make another array that contains the keyword matches
 # scrape the first link and count the number of keyword matches
 for i in range(len(links_arr)):
@@ -38,7 +41,8 @@ for i in range(len(links_arr)):
         if query in all_text:
             num_keywords += 1
     links_obj = Links(url, soup, num_keywords)
-    print(links_obj)
+    links_obj_arr.append(links_obj)
+print(links_obj_arr)
     # to_str_i = str(i)
     # to_str_key = str(num_keywords)
     # print('link: ' + to_str_i + to_str_key)
