@@ -51,6 +51,8 @@ for i in range(len(links_arr)):
                 num_keywords += 1
                 #print(num_keywords)
 
+                #testing
+
     links_obj = Links(url, soup, num_keywords)
     links_obj_arr.append(links_obj)
     #print(links_obj.scraped_text)
