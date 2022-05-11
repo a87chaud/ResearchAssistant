@@ -36,13 +36,24 @@ for i in range(len(links_arr)):
     soup = BeautifulSoup(html_doc, 'html.parser')
     # extracting all the text from the html
     all_text = soup.get_text()
+    #print(all_text)
+
     # count the number of instances of the query found in the document
     num_keywords = 0
-    for i in all_text:
-        if query in all_text:
-            num_keywords += 1
+    all_text_length = len(all_text)
+    query_length = len(query)
+    buffer = ""
+    for i in range(0, all_text_length - query_length + 1):
+        if query[0] in all_text[i]:
+            buffer = all_text[i:i + query_length]
+            #print(buffer)
+            if query in buffer:
+                num_keywords += 1
+                #print(num_keywords)
+
     links_obj = Links(url, soup, num_keywords)
     links_obj_arr.append(links_obj)
+    #print(links_obj.scraped_text)
 print(links_obj_arr)
     # to_str_i = str(i)
     # to_str_key = str(num_keywords)
@@ -60,6 +71,9 @@ IF SORTING FROM SCRATCH
 # sorting the links object array using the sort method 
 # key(any function) will be a lambda function that simply extract the num_keywords 
 links_obj_arr.sort(key = lambda x:x.num_keywords, reverse=True)
+
+def grab_paragraph():
+    return
 
 # create a class that stores all the relevant information per search
 # this includes: query, links, final result
