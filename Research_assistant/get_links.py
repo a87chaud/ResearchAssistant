@@ -41,6 +41,7 @@ for i in range(len(links_arr)):
     for i in all_text:
         if query in all_text:
             num_keywords += 1
+    
     links_obj = Links(url, soup, num_keywords)
     links_obj_arr.append(links_obj)
 print(links_obj_arr)
