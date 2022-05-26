@@ -1,4 +1,4 @@
-# ResearchAssistant
+# ResearchAssistant(IN PROGRESS)
 
 App designed to help people with research. Simply enter some keywords, and the app will scrape several websites for the information and return a compressed version with all the relevant information from multiple sites. It will also return the links it used ranked in order of the number of keyword matches.
 
